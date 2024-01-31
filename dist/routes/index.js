@@ -4,7 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const helloWorldRouter_1 = __importDefault(require("./helloWorldRouter"));
+const publicRoute_1 = __importDefault(require("./publicRoute"));
+const privateRoute_1 = __importDefault(require("./privateRoute"));
 const router = express_1.default.Router();
-router.use('/hello', helloWorldRouter_1.default);
+router.use('/', publicRoute_1.default);
+router.use('/private', privateRoute_1.default);
 exports.default = router;

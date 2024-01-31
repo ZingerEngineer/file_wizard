@@ -1,6 +1,9 @@
 import express from 'express'
-import helloWorldRouter from './helloWorldRouter'
+import publicRoute from './publicRoute'
+import privateRoute from './privateRoute'
 const router = express.Router()
-router.use('/hello', helloWorldRouter)
+
+router.use('/', publicRoute)
+router.use('/private', privateRoute)
 
 export default router
