@@ -4,11 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const publicRoute_1 = __importDefault(require("./publicRoute"));
-const privateRoute_1 = __importDefault(require("./privateRoute"));
+const publicRoutes_1 = __importDefault(require("./publicRoutes"));
+const privateRoutes_1 = __importDefault(require("./privateRoutes"));
 const fileRouter_1 = __importDefault(require("./fileRouter"));
+const privateRoutesValidator_1 = __importDefault(require("../middlewares/privateRoutesValidator"));
 const router = express_1.default.Router();
-router.use('/', publicRoute_1.default);
-router.use('/private', privateRoute_1.default);
+router.use('/', publicRoutes_1.default);
+router.use('/private', privateRoutesValidator_1.default, privateRoutes_1.default);
 router.use('/file', fileRouter_1.default);
 exports.default = router;

@@ -3,6 +3,7 @@ import cors from 'cors'
 import router from './routes/index'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
+import multer from 'multer'
 
 dotenv.config()
 
@@ -16,6 +17,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req: Request, res: Response) => {
   res.send('Welcome')
 })

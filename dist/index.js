@@ -18,6 +18,7 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.send('Welcome');
 });

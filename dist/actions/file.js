@@ -5,23 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadFile = void 0;
 const fs_1 = __importDefault(require("fs"));
-const uploadFile = () => {
-    let fileBuffer = null;
+const uploadFile = (buffer, fileName, extension) => {
     let isSuccessful = 1;
-    fs_1.default.readFile('C:/Users/ramye/Desktop/downloade.png', (err, data) => {
+    fs_1.default.writeFile(`./uploads/${fileName}.${extension}`, buffer, (err) => {
         if (err) {
             isSuccessful = 0;
             console.log(err);
         }
-        fileBuffer = data;
-        console.log('File is ready.');
-        fs_1.default.writeFile(`file.png`, fileBuffer, (err) => {
-            if (err) {
-                isSuccessful = 0;
-                console.log(err);
-            }
-        });
     });
+    console.log(isSuccessful);
     return isSuccessful;
 };
 exports.uploadFile = uploadFile;
