@@ -1,18 +1,34 @@
-import fs from 'fs'
+import { writeFile } from 'node:fs'
+import { Response } from 'express'
 
-const uploadFile = (buffer: Buffer, fileName: string, extension: string) => {
+const uploadFileCallback = () => {}
+
+const uploadFile = (
+  buffer: Buffer,
+  fileName: string,
+  extension: string,
+  cb: (isSuccessful: number, fileURL: string | null) => void
+) => {
   let isSuccessful = 1
+  let fileURL: string | null = null
 
-  fs.writeFile(`./uploads/${fileName}.${extension}`, buffer, (err) => {
+  writeFile(`./uploads/${fileName}.${extension}`, buffer, (err) => {
     if (err) {
       isSuccessful = 0
-      console.log(err)
+      console.log({
+        message: err.message,
+        code: err.code,
+        cause: 'Write file was unsuccessful.'
+      })
     }
+    fileURL = new URL(
+      `http://localhost:3001/file?file:${fileName.split('_')[1]}`
+    ).href
+    cb(isSuccessful, fileURL)
   })
-
-  console.log(isSuccessful)
-  return isSuccessful
 }
-const writeFile = () => {}
+
+const getFileFromURL = (URL: string) => {}
+const wr = () => {}
 const readFile = () => {}
 export { uploadFile }

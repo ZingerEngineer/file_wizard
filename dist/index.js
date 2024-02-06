@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.BaseURL = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const index_1 = __importDefault(require("./routes/index"));
@@ -16,6 +17,7 @@ const corsOptions = {
     methods: 'GET,POST,PUT,PATCH,DELETE,HEAD',
     exposedHeaders: '*'
 };
+exports.BaseURL = `http://localhost:${port}`;
 app.use((0, cors_1.default)(corsOptions));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -24,5 +26,5 @@ app.get('/', (req, res) => {
 });
 app.use('/', index_1.default);
 app.listen(port, () => {
-    console.log(`[server]: Server is running at http://localhost:${port}`);
+    console.log(`[server]: Server is running at ${exports.BaseURL}`);
 });

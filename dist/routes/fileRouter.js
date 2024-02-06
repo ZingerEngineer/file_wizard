@@ -23,4 +23,5 @@ const upload = (0, multer_1.default)({
 });
 const fileRouter = express_1.default.Router();
 fileRouter.post('/up_file', upload.single('File'), file_1.uploadFileControler);
+fileRouter.get('/file');
 exports.default = fileRouter;

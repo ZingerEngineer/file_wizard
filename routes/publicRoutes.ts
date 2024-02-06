@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express'
-
+import helloWorld from './helloWorldRouter'
 const publicRoute = express.Router()
 
 publicRoute.get('/', (req: Request, res: Response) => {
@@ -8,4 +8,5 @@ publicRoute.get('/', (req: Request, res: Response) => {
   })
 })
 
+publicRoute.use('/hello', helloWorld)
 export default publicRoute

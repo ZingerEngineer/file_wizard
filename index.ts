@@ -3,7 +3,6 @@ import cors from 'cors'
 import router from './routes/index'
 import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
-import multer from 'multer'
 
 dotenv.config()
 
@@ -14,6 +13,7 @@ const corsOptions = {
   methods: 'GET,POST,PUT,PATCH,DELETE,HEAD',
   exposedHeaders: '*'
 }
+export const BaseURL = `http://localhost:${port}`
 
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
@@ -24,5 +24,5 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/', router)
 
 app.listen(port, () => {
-  console.log(`[server]: Server is running at http://localhost:${port}`)
+  console.log(`[server]: Server is running at ${BaseURL}`)
 })
