@@ -1,8 +1,8 @@
 import { Request, Response } from 'express'
-import { uploadFile } from '../actions/file'
+import { uploadFile, getFile } from '../actions/file'
 import mime from 'mime-types'
 
-const uploadFileControler = (req: Request, res: Response) => {
+const uploadFileController = (req: Request, res: Response) => {
   if (!req.file) {
     console.log({ message: 'Error occured.', cause: 'Missing the file.' })
     res.status(400).redirect('/')
@@ -43,4 +43,16 @@ const uploadFileControler = (req: Request, res: Response) => {
   })
 }
 
-export { uploadFileControler }
+const getFileFromURLController = (req: Request, res: Response) => {
+  const fileNumber = req.query['file']
+  if (typeof fileNumber !== 'string') {
+    return res.status(400).redirect('/')
+  }
+  getFile(fileNumber, (isSuccessful, file) => {
+    isSuccessful
+      ? res.status(200).json({ isSuccessful, file })
+      : res.status(400).redirect('/')
+  })
+}
+
+export { uploadFileController, getFileFromURLController }

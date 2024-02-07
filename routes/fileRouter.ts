@@ -1,5 +1,8 @@
 import express from 'express'
-import { uploadFileControler } from '../controlers/file'
+import {
+  uploadFileController,
+  getFileFromURLController
+} from '../controlers/file'
 import multer from 'multer'
 const storage = multer.memoryStorage()
 const upload = multer({
@@ -20,6 +23,7 @@ const upload = multer({
 })
 const fileRouter = express.Router()
 
-fileRouter.post('/up_file', upload.single('File'), uploadFileControler)
-fileRouter.get('/file')
+fileRouter.post('/up_file', upload.single('File'), uploadFileController)
+fileRouter.get('/file', getFileFromURLController)
+
 export default fileRouter
