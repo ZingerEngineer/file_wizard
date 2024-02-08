@@ -43,7 +43,7 @@ const uploadFileController = (req: Request, res: Response) => {
   })
 }
 
-const getFileFromURLController = (req: Request, res: Response) => {
+const getFileController = (req: Request, res: Response) => {
   const fileNumber = req.query['file']
   if (typeof fileNumber !== 'string') {
     return res.status(400).redirect('/')
@@ -55,4 +55,4 @@ const getFileFromURLController = (req: Request, res: Response) => {
   })
 }
 
-export { uploadFileController, getFileFromURLController }
+export { uploadFileController, getFileController }

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getFileFromURLController = exports.uploadFileController = void 0;
+exports.getFileController = exports.uploadFileController = void 0;
 const file_1 = require("../actions/file");
 const mime_types_1 = __importDefault(require("mime-types"));
 const uploadFileController = (req, res) => {
@@ -45,7 +45,7 @@ const uploadFileController = (req, res) => {
     });
 };
 exports.uploadFileController = uploadFileController;
-const getFileFromURLController = (req, res) => {
+const getFileController = (req, res) => {
     const fileNumber = req.query['file'];
     if (typeof fileNumber !== 'string') {
         return res.status(400).redirect('/');
@@ -56,4 +56,4 @@ const getFileFromURLController = (req, res) => {
             : res.status(400).redirect('/');
     });
 };
-exports.getFileFromURLController = getFileFromURLController;
+exports.getFileController = getFileController;
