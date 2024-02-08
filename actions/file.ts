@@ -1,6 +1,6 @@
 import { writeFile, readFile, readdir } from 'node:fs'
 import { lookup, charset } from 'mime-types'
-import { deflate, inflate } from 'node:zlib'
+
 const uploadFile = (
   buffer: Buffer,
   fileName: string,
