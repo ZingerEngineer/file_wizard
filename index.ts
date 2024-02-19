@@ -6,6 +6,13 @@ import bodyParser from 'body-parser'
 
 dotenv.config()
 
+process.on('uncaughtException', (err) => {
+  console.log({
+    message: 'Error happened.',
+    type: 'Uncaught exception.',
+    error: err
+  })
+})
 const app: Express = express()
 const port = process.env.PORT || 3000
 const corsOptions = {

@@ -10,6 +10,13 @@ const index_1 = __importDefault(require("./routes/index"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const body_parser_1 = __importDefault(require("body-parser"));
 dotenv_1.default.config();
+process.on('uncaughtException', (err) => {
+    console.log({
+        message: 'Error happened.',
+        type: 'Uncaught exception.',
+        error: err
+    });
+});
 const app = (0, express_1.default)();
 const port = process.env.PORT || 3000;
 const corsOptions = {
